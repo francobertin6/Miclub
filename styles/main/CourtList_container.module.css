@@ -1,0 +1,24 @@
+.CourtContainer{
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    
+    height: 25vw;
+    width: 25vw;
+
+    margin-left: 4vw;
+    margin-right: 4vw;
+
+    margin-top: 2.5vh;
+    margin-bottom: 2.5vh;
+
+    border: 1px solid black;
+
+}
+
+.images{
+
+    width: inherit;
+    height: 25vh;
+}
