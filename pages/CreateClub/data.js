@@ -5,8 +5,11 @@ import Navigation from "../../components/nav";
 
 import Styles from "../../styles/createClub/data.module.css"
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 export default function Profile(){
+
+    const router = useRouter()
 
     const [dataURL] = useState("http://127.0.0.1:8080/clubDB/")
     const [profileSrc, setprofileSrc] = useState("/images/Nav_icon/acceso.png");
@@ -90,6 +93,8 @@ export default function Profile(){
             .catch((err) => {
                 console.log(err);
             })
+
+            router.push("/MiClub");
         }
     }
 

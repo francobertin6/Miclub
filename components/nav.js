@@ -1,9 +1,9 @@
 
 import Image from "next/image";
-import Style from "../styles/Navigation/Navigation.module.css";
+import Style from "../styles/components/Navigation/Navigation.module.css";
 import Link from "next/link";
 
-export default function Navigation(){
+export default function Navigation({is_owner}){
 
     return(
         <article id="Nav_container" className={Style.nav}>
@@ -37,7 +37,7 @@ export default function Navigation(){
                         />
                     </Link>
                     <Link href="/CreateClub/data">
-                        <button>Unir mi club</button>
+                        {is_owner === "owner" ? <button>Mi Club</button> : <button>Unir mi club</button>}
                     </Link>
                     
                 </div>

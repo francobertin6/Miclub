@@ -1,45 +1,41 @@
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { Products_Context } from "../context/Provider_products.js";
+import { User_Context } from "../context/Provider_user.js";
 
-import Navigation from "../components/nav";
-import CourtList_container from "./Main/CourtList_container";
+import Navigation from "../components/nav.js";
+import CourtList_container from "./Main/CourtList_container.js";
 
 import Styles from "../styles/main/Main.module.css"
 
 
 export default function Main (){
 
-    const [Courts, setCourts] = useState();
-    const [MainURL] = useState("http://127.0.0.1:8080/");
+    const contexto_Products = useContext(Products_Context);
+    const contexto_user = useContext(User_Context);
+
+    const {User, Ask_For_Logging_user} = contexto_user
+    const {Courts, Ask_For_Logging_products} = contexto_Products
+
     const [loading, setLoading] = useState(false);
 
+    
     useEffect(() => {
 
-        fetch(MainURL + "productsDB/Get_dbproduct", {
-            method: "GET",
-            headers:  {
-                "Authorization": "Bearer " + JSON.stringify(localStorage.getItem("JWT"))
-            }
-        })
-        .then((res) => {
+        Ask_For_Logging_products(true);
+        Ask_For_Logging_user(true);
+  
+        setTimeout(() => {
+            setLoading(true);
+        }, 500);    
             
-            res.json().then((res)=>{
-                console.log(res);
-                setCourts(res);
-                setLoading(true);
-            })
-            
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-
     }, [])
 
-    
-    return(
+    if(loading){
+
+        return(
         <>
-            <Navigation />
+            <Navigation is_owner={User.typeUser}/>
 
             <article className={Styles.navOptions}>
                 <button>
@@ -55,11 +51,18 @@ export default function Main (){
 
             <section className={Styles.MainContainer}>
                 
-                {loading === true ? <CourtList_container props={Courts} /> : <></>}
+                <CourtList_container props={Courts} />
 
             </section>
         
         </>
-    )
+        )
+    }
+    else{
+        return(
+            <></>
+        )
+    }
+    
 
 }

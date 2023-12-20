@@ -7,7 +7,7 @@ export default function Home(){
 
     return(
         <>
-            <Navigation/>
+            <Navigation is_owner={false}/>
             
             <section id="home_firstSection" className={Styles.firstSection}>
 

@@ -1,0 +1,20 @@
+
+.Options{
+
+    width: fit-content;
+    height: 20vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+}
+
+.Options div{
+
+    width: 10vw;
+    height: 5vh;
+
+}
+

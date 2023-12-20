@@ -2,39 +2,25 @@
 import Styles from "../../styles/main/CourtList_container.module.css"
 import Image from "next/image"
 
+import { Products_Context } from "../../context/Provider_products.js"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 
 
 export default function CourtList_container({props}){
 
-    console.log(props)
+    const contexto = useContext(Products_Context);
 
-    const [ThumbnailURl] = useState("http://127.0.0.1:8080/");
-    const [images] = useState([]);
+    const { images } = contexto;
+
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
 
-        props.map( (element) => {
-
-            element.Thumbnail.map( async (image) => {
-
-                const products = await fetch(ThumbnailURl + "productsDB/sendFiles/products/" + image.name)
-
-                products.blob()
+        setTimeout(() => {
+            setLoading(false);
+        }, 2000);
                 
-                .then(blob => {
-                    images.push({src: URL.createObjectURL(blob)})
-                })
-
-                setTimeout(() => {
-                    setLoading(false);
-                }, 2000);
-                
-            })               
-        })
-        
     }, [])
     
     if(loading === true){

@@ -1,0 +1,115 @@
+.CreateCourt_container{
+
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+}
+
+.CreateCourt{
+
+    position: relative;
+    width: 90vw;
+    height: 80vh;
+
+    margin-top: 10vh;
+    background-color: rgb(151, 151, 151);
+}
+
+.CreateCourt h1{
+
+    position: absolute;
+    left: 5vw;
+    top: 2.5vh;
+}
+
+.CreateCourt form{
+
+    position: absolute;
+    top: 12vh;
+
+    width: inherit;
+    height: 60vh;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+}
+
+.CreateCourt form input{
+    width: 30vw;
+    height: 5vh;
+}
+
+.CreateCourt form select{
+    width: 30vw;
+    height: 5vh;
+}
+
+.CreateCourt form textarea{
+    height: 10vh;
+}
+
+.btnContainer{
+    position: absolute;
+    top: 85%;
+    left: 70%;
+
+    width: 25vw;
+    height: fit-content;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.btnContainer button{
+
+    width: 10vw;
+    height: 5vh;
+
+    background-color: chartreuse;
+}
+
+.progress li {
+    display: inline-block;
+    position: relative;
+    padding: 0.5em;
+    line-height: 30px;
+    color: white;
+    background-color: #85c0aa;
+ }
+ 
+ .progress li:not(:first-child) { /* todos los items menos el primero */
+    padding-left: 1em; /* compensación de la flecha a la izquierda para que no pise el texto*/
+    margin-left: 8px; /* separación de los ítems*/
+ }
+ 
+ .progress li::after { /* flecha a la derecha */
+    
+    display: block;
+    position: absolute;
+    top: 0;
+    right: -18px;
+    z-index: 2;
+    border-top: 27px solid transparent;
+    border-left: 18px solid #85c0aa;
+    border-bottom: 27px solid transparent;
+ 
+ }
+ 
+ .progress li:not(:first-child)::before { /* todos los items menos el primero. Flecha a la izquierda */
+    
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    border-top: 27px solid transparent;
+    border-left: 18px solid white;
+    border-bottom: 27px solid transparent;
+ }
