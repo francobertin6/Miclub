@@ -2,17 +2,19 @@
 
     position: relative;
     width: 100vw;
-    height: 100vh;
+    height: max-content;
 
     display: flex;
     justify-content: center;
+
+    margin-bottom: 10vh;
 }
 
 .CreateCourt{
 
     position: relative;
     width: 90vw;
-    height: 80vh;
+    height: fit-content;
 
     margin-top: 10vh;
     background-color: rgb(151, 151, 151);
@@ -25,7 +27,7 @@
     top: 2.5vh;
 }
 
-.CreateCourt form{
+.CreateCourt .form1{
 
     position: absolute;
     top: 12vh;
@@ -40,17 +42,21 @@
 
 }
 
-.CreateCourt form input{
+.CreateCourt .form1 input{
+    width: 30vw;
+    height: 5vh;
+    position: relative;
+    top: 2vh;
+    left: 8vw;
+
+}
+
+.CreateCourt .form1 select{
     width: 30vw;
     height: 5vh;
 }
 
-.CreateCourt form select{
-    width: 30vw;
-    height: 5vh;
-}
-
-.CreateCourt form textarea{
+.CreateCourt .form1 textarea{
     height: 10vh;
 }
 
@@ -75,41 +81,89 @@
     background-color: chartreuse;
 }
 
-.progress li {
-    display: inline-block;
+.progress{
+    position: absolute;
+    left: 50vw;
+    top: 2.5vh;
+
+    width: 40vw;
+    height: 5vh;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.progress button{
+    width: 20vw;
     position: relative;
-    padding: 0.5em;
-    line-height: 30px;
-    color: white;
-    background-color: #85c0aa;
- }
- 
- .progress li:not(:first-child) { /* todos los items menos el primero */
-    padding-left: 1em; /* compensación de la flecha a la izquierda para que no pise el texto*/
-    margin-left: 8px; /* separación de los ítems*/
- }
- 
- .progress li::after { /* flecha a la derecha */
+    margin-right: 2vw;
+    margin-left: 2vw;
+}
+
+.progress li{
+    list-style: none;
+    height: inherit;
+    text-align: center;
+}
+
+
+/*
+    STEP 2
+*/
+
+.form2{
+
+    position: relative;
+    top: 20vh;
+
+    width: inherit;
+    height: max-content;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+    padding-bottom: 30vh;
+
+}
+
+.form2 .Courts{
+
+    position: relative;
+
+    width: inherit;
+    height: max-content;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    margin-bottom: 20vh;
+
+}
+
+.form2 .Courts .ImgDiv{
+
+    width: 45vw;
+    height: max-content;
+
+}
+
+.form2 .Courts .ImgDiv img{
+
+    position: relative;
+    left: 5vw;
+
+    width: 30vw;
+    height: 60vh;
+}
+
+.form2 .Courts .inputsDiv{
+
+    width: 45vw;
+    height: 60vh;
     
-    display: block;
-    position: absolute;
-    top: 0;
-    right: -18px;
-    z-index: 2;
-    border-top: 27px solid transparent;
-    border-left: 18px solid #85c0aa;
-    border-bottom: 27px solid transparent;
- 
- }
- 
- .progress li:not(:first-child)::before { /* todos los items menos el primero. Flecha a la izquierda */
-    
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    border-top: 27px solid transparent;
-    border-left: 18px solid white;
-    border-bottom: 27px solid transparent;
- }
+}
