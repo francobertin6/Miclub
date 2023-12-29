@@ -5,7 +5,7 @@ import Navigation from "../../components/nav";
 import Footer from "../../components/footer";
 
 import Styles from "../../styles/miclub/CreateCourt/CreateCourt.module.css"
-
+import Link from "next/link";
 
 export default function CreateCourt(){
 
@@ -21,6 +21,8 @@ export default function CreateCourt(){
     const [CourtPrice, setCourtPrice] = useState();
     // descripcion de cancha opcional
     const [CourtDescription, setCourtDescription] = useState()
+    // manejar division de horarios
+    const [Schedules, setSchedules] = useState(1)
 
 
     // Handle inputs para informacion de los productos
@@ -30,10 +32,15 @@ export default function CreateCourt(){
         let id = e.target.id;
 
         if(id === "step1"){
+            setDiscipline(document.getElementById("discipline").value);
+            setCourtQuantity(document.getElementById("quantity").value);
             setSteps(2)
         }
         else if(id === "step2"){
             setSteps(3)
+        }
+        else if(e.target.className === "back"){
+            setSteps(1)
         }
     }
 
@@ -67,11 +74,22 @@ export default function CreateCourt(){
         setCourtDescription(e.target.value)
     }
 
+    const HandleSchedules = (e) => {
+
+        const schedules = e.target.value;
+        console.log(e.target.value)
+
+        setSchedules(schedules);
+
+    }
+
 
 
     // Funcion necesaria para armar el form del paso 2
 
-    const HandleForm_Step2 = () => {
+    const HandleForm_Step2 = ({props}) => {
+
+        console.log(props)
 
         let TypeImg = () =>{
                             
@@ -93,6 +111,37 @@ export default function CreateCourt(){
 
         }
 
+        let Surface = () =>{
+
+            if(Discipline === "Paddel"){
+                return(
+                    <select>
+                        <option>cemento</option>
+                        <option>cesped</option>
+                        <option>cesped sintetico</option>
+                    </select>
+                )
+            }
+            else if(Discipline === "Tenis"){
+                return(
+                    <select>
+                        <option>cemento</option>
+                        <option>arcilla</option>
+                        <option>cesped</option>
+                    </select>
+                )
+            }
+            else if(Discipline === "Futbol 5" || Discipline === "Futbol 7" || Discipline === "Futbol 11"){
+                return(
+                    <select>
+                        <option>cesped</option>
+                        <option>cesped sintetico</option>
+                        <option>cemento</option>
+                    </select>
+                )
+            }
+        }
+
         let articles = [];
 
         for (let index = 0; index < CourtQuantity; index++) {
@@ -103,9 +152,47 @@ export default function CreateCourt(){
                         <TypeImg />          
                     </div>
                     <div className={Styles.inputsDiv}>
-                        <input type="text" placeholder="Nombre de la cancha"/>
+
+                        <div>
+                            <input type="text" placeholder="Nombre de la cancha"/>
+                        </div>
                         <br />
+                        <div className={Styles.schedules}>
+                            <label name="schedules"/>horarios de atencion
+                            <select onChange={HandleSchedules}>
+                                <option>1</option>
+                                <option>2</option>
+                            </select>
+                            {props <= 1 ? 
+                                <div>
+                                    <input type="number" placeholder="hs"/>
+                                    <input type="number" placeholder="hs"/>
+                                </div>                 
+                                :
+                                <>
+                                <div>
+                                    <input type="number" placeholder="hs"/>
+                                    <input type="number" placeholder="hs"/>
+                                </div> 
+                                <div>
+                                    <input type="number" placeholder="hs"/>
+                                    <input type="number" placeholder="hs"/>
+                                </div>
+                                </>        
+                            }
+                        </div>
                         
+                        <br />
+                            <div>
+                                <label />Duracion de turno
+                                <input type="number" placeholder="hs"/>
+                            </div>
+                        <br />
+                            <div>
+                                <label /> Superficie de terreno
+                                <Surface />
+                            </div>
+
                     </div>
                 </article>
             )
@@ -146,7 +233,7 @@ export default function CreateCourt(){
 
                         <div>
                         <label name="courts"/> Disciplina: <br />
-                        <select onChange={HandleDiscipline}>
+                        <select onChange={HandleDiscipline} id="discipline">
                             <option value="Paddel">Paddel</option>
                             <option value="Tenis">Tenis</option>
                             <option value="Futbol 5">Futbol 5</option>
@@ -163,7 +250,7 @@ export default function CreateCourt(){
 
                         <div>
                         <label name="quantityCourts"/> Cantidad de canchas: <br />
-                        <select onChange={HandleQuantity}>
+                        <select onChange={HandleQuantity} id="quantity">
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -178,7 +265,7 @@ export default function CreateCourt(){
                     </form>
 
                     <div className={Styles.btnContainer}>
-                        <button>Cancelar</button>
+                        <Link href={"/MiClub"}><button>Cancelar</button></Link>
                         <button id="step1" onClick={HandleSteps}>Siguiente</button>
                     </div>
                         
@@ -212,11 +299,11 @@ export default function CreateCourt(){
                     <h1>Crear cancha</h1>
 
                     <form className={Styles.form2}>
-                        <HandleForm_Step2 />
+                        <HandleForm_Step2 props={Schedules}/>
                     </form>
 
-                    <div className={Styles.btnContainer}>
-                        <button>Cancelar</button>
+                    <div className={Styles.btnContainer2}>
+                        <button className="back" onClick={HandleSteps}>Volver</button>
                         <button id="step2" onClick={HandleSteps}>Siguiente</button>
                     </div>
                         
